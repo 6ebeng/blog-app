@@ -1,0 +1,31 @@
+{
+	"name": "ukh-blog-website",
+	"version": "1.0.0",
+	"description": "UKH University Blog Website - A full-stack blog application built with React, Express.js, Sequelize, and PostgreSQL for academic purposes.",
+	"homepage": "https://github.com/Yassin-H-Rassul/ukh-blog-website#readme",
+	"bugs": {
+		"url": "https://github.com/Yassin-H-Rassul/ukh-blog-website/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Yassin-H-Rassul/ukh-blog-website.git"
+	},
+	"license": "MIT",
+	"workspaces": [
+		"backend",
+		"frontend"
+	],
+	"scripts": {
+		"dev": "concurrently --names \"Node,Vite\" -c \"green,blue\" \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+		"sqlz": "npx -w backend sequelize-cli",
+		"start": "npm run build -w frontend && npm run start -w backend",
+		"test": "vitest",
+		"dev:watch:up": "docker-compose up --build -d  ",
+		"dev:watch:down": "docker-compose down"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-react-swc": "^3.2.0",
+		"concurrently": "^7.6.0",
+		"vitest": "^0.29.7"
+	}
+}

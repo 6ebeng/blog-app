@@ -1,0 +1,72 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  top: 0;
+  position: sticky;
+  background-color: #fff;
+  z-index: 1;
+}
+
+button:focus {
+  outline: 0 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  user-select: none;
+}
+
+.not-found {
+  display: flex;
+  height: 85vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.banner {
+  background-color: #007bff !important;
+}
+
+
+.navbar-brand {
+    color: #007bff !important;
+}
+
+a {
+    color: #007bff;
+}
+
+.page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-outline-primary:hover
+ {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.nav-pills.outline-active .nav-link.active {
+    border-bottom: 2px solid #007bff !important;
+    color: #007bff !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+a:focus, a:hover
+ {
+    color: #007bff;
+}

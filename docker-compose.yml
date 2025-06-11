@@ -1,0 +1,57 @@
+services:
+  postgres-db:
+    image: postgres:13.2-alpine
+    container_name: postgres-db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DEV_DB_USERNAME}
+      POSTGRES_PASSWORD: ${DEV_DB_PASSWORD}
+      POSTGRES_DB: ${DEV_DB_DATABASE}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DEV_DB_USERNAME} -d ${DEV_DB_DATABASE}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: sh -c "npm run sqlz -- db:migrate && npm run sqlz -- db:seed:all && npm run dev"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    environment:
+      DEV_DB_USERNAME: ${DEV_DB_USERNAME}
+      DEV_DB_PASSWORD: ${DEV_DB_PASSWORD}
+      DEV_DB_DATABASE: ${DEV_DB_DATABASE}
+      DEV_DB_HOSTNAME: postgres-db
+      DEV_DB_DIALECT: postgres
+      NODE_ENV: development
+    env_file:
+      - .env
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:
