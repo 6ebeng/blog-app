@@ -2,13 +2,13 @@
 	"name": "ukh-blog-website",
 	"version": "1.0.0",
 	"description": "UKH University Blog Website - A full-stack blog application built with React, Express.js, Sequelize, and PostgreSQL for academic purposes.",
-	"homepage": "https://github.com/Yassin-H-Rassul/ukh-blog-website#readme",
+	"homepage": "https://github.com/6ebeng/blog-app#readme",
 	"bugs": {
-		"url": "https://github.com/Yassin-H-Rassul/ukh-blog-website/issues"
+		"url": "https://github.com/6ebeng/blog-app/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Yassin-H-Rassul/ukh-blog-website.git"
+		"url": "git+https://github.com/6ebeng/blog-app.git"
 	},
 	"license": "MIT",
 	"workspaces": [
