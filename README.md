@@ -21,7 +21,6 @@ A full-stack blog application built with React/Vite + SWC, Express.js, Sequelize
 - **Vite**: Fast build tool and development server.
 - **React Router**: Client-side routing.
 - **Axios**: HTTP client for API requests.
-- **Testing**: Vitest for unit and integration testing.
 
 ### Backend
 
@@ -32,9 +31,11 @@ A full-stack blog application built with React/Vite + SWC, Express.js, Sequelize
 - **bcrypt**: For password hashing.
 - **Database Support**: Easily configurable for PostgreSQL, MySQL, MariaDB, SQLite, and Microsoft SQL Server.
 
-## Prerequisites
+---
 
-Before you begin, ensure you have the following installed:
+## Installation and Setup
+
+### Prerequisites
 
 - A text editor or IDE (e.g., VS Code, Sublime Text, Atom).
 - [Git](https://git-scm.com/downloads)
@@ -42,23 +43,54 @@ Before you begin, ensure you have the following installed:
 - [NPM](https://www.npmjs.com/) (usually included with Node.js)
 - [Docker](https://www.docker.com/products/docker-desktop/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Installation and Configuration
+### Docker and WSL Installation (for Windows users)
 
-1.  **Clone the repository:**
+1.  **Enable WSL & Virtual Machine Platform**:
+    Open PowerShell as Administrator and run:
+
+    ```bash
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+    Restart your computer.
+
+2.  **Set WSL 2 as Default**:
+    Open PowerShell as Administrator and run:
+
+    ```bash
+    wsl --set-default-version 2
+    ```
+
+3.  **Install Docker Desktop**:
+    [Download](https://www.docker.com/products/docker-desktop) and install Docker Desktop for Windows. Ensure that "Use the WSL 2 based engine" is checked in **Settings \> General**.
+
+---
+
+### Application Setup
+
+1.  **Clone the Repository**:
+
     ```bash
     git clone https://github.com/6ebeng/blog-app.git
     cd ukh-blog-website
     ```
-2.  **Install dependencies:**
+
+2.  **Install Dependencies**:
+
     ```bash
     npm install
     ```
-3.  **Set up environment variables:**
+
+3.  **Set Up Environment Variables**:
     Create a `.env` file in the root directory by copying the example file:
+
     ```bash
     cp .env.example .env
     ```
-    Update the `.env` file with your PostgreSQL database credentials:
+
+    Update the `.env` file with your PostgreSQL database credentials for the development environment:
+
     ```env
     # Development Database
     DEV_DB_USERNAME=your_postgres_username
@@ -68,42 +100,45 @@ Before you begin, ensure you have the following installed:
     DEV_DB_DIALECT=postgres
     DEV_DB_LOGGING=false
     ```
-4.  **Database Setup:**
-    - **Using Docker (Recommended):**
-      Start the PostgreSQL database container:
-      ```bash
-      npm run dev:watch:up
-      ```
-    - **Manual Setup:**
-      If you are not using Docker, ensure your PostgreSQL server is running and accessible with the credentials provided in your `.env` file. Then, create the database:
-      ```bash
-      npm run sqlz -- db:create
-      ```
-5.  **Run database migrations and seeders:**
-    ```bash
-    npm run sqlz -- db:migrate
-    npm run sqlz -- db:seed:all
-    ```
+
+---
 
 ## Usage
 
-- **Development:**
-  To run the application in development mode with hot-reloading for both the frontend and backend:
-  ```bash
-  npm run dev
-  ```
-  - The frontend will be available at `http://localhost:3000`.
-  - The backend API will be available at `http://localhost:3001/api`.
-- **Testing:**
-  Run the test suite using Vitest:
-  ```bash
-  npm run test
-  ```
-- **Production:**
-  To build the production-ready application:
-  ```bash
-  npm run start
-  ```
+### Development Environment with Docker Compose
+
+The provided `docker-compose.yml` is for a development environment.
+
+1.  **Start the Application**:
+
+    ```bash
+    npm run dev:watch:up
+    ```
+
+    This command will build and start the frontend and backend services in detached mode.
+
+2.  **Access the Application**:
+
+    - **Frontend**: [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000)
+    - **Backend API**: [http://localhost:3001/api](https://www.google.com/search?q=http://localhost:3001/api)
+
+3.  **Stopping the Application**:
+
+    ```bash
+    npm run dev:watch:down
+    ```
+
+### Production Environment
+
+For a production environment, you should run the application without Docker, using the following command:
+
+```bash
+npm run start
+```
+
+This will build the frontend and start the backend server.
+
+---
 
 ## API Documentation
 
